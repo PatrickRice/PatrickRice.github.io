@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The Psycic Game</title>
+</head>
+<body>
+    <h1>The Psycic Game!</h1>
+
+    <p>Guess what letter I'm thinking of</p>
+        
+    <p id="player-wins"></p>     
+    <p id="player-losses"></p>
+    <p id="guesses-remaining"></p>
+    <p id="letters-guessed"></p>
+
+  <script>
+
+    // VARIABLES
+    var playerWins = document.getElementById("player-wins");
+    var playerLosses = document.getElementById("player-losses");
+    var guessesRemaining = document.getElementById("guesses-remaining");
+    var lettersGuessed = document.getElementById("letters-guessed");
+    var computerChoices = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+    var computerGuess;
+    var wins = 0;
+    var losses = 0;
+    var remaining = 10;
+    var userGuesses = "";
+    var userGuess;
+    var userChoices = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+    var userChoiceOK = false;
+
+  // Functions
+    function start() {
+        computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+        console.log("computer guess", computerGuess);
+    }
+
+    function updateScore() {
+        playerWins.textContent = "Wins: " + wins;
+        playerLosses.textContent = "Losses: " + losses;
+        guessesRemaining.textContent = "Guesses remaining: " + remaining;
+        lettersGuessed.textContent = "Your guesses so far: "+ userGuesses +" ";
+    }
+
+   function restart() {
+       computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+       console.log("computer guess", computerGuess);
+       userGuesses = "";
+       remaining = 10;
+   }
+
+
+// Main Program
+start();
+updateScore();
+
+    // Determines which key was pressed and checks it against game's conditions.
+    document.onkeyup = function(event) {
+
+    userGuess = event.key.toLowerCase();
+        console.log("user guess", userGuess);
+
+    userChoiceOK = userChoices.includes(userGuess);
+        console.log(userChoiceOK);
+
+
+    if (userChoiceOK === false) {
+        alert("That's not a letter!  Guess a letter a-z");
+    }
+
+    else if (userGuesses.includes(userGuess) === true) {
+        alert("You already guessed '"+ userGuess +"'!  Pick a different letter!");
+        console.log("guess check", this);
+    }
+
+    else if (userGuess === computerGuess) {
+        wins++;
+        restart();
+        updateScore();
+    } 
+        
+    else if ((userGuess !== computerGuess) && (remaining > 0)) {
+        remaining--
+        userGuesses = userGuesses + userGuess + " ";
+        updateScore();
+    }
+    else {
+        losses++;
+        restart();
+        updateScore();
+        
+    }   
+
+}
+  
+  </script>
+
+</body>
+
+</html>
