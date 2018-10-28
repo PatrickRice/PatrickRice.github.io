@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Animal Gifs!</title>
+  <link rel="stylesheet" href="assets/reset.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body background = "assets/background.png">
+
+    <!--Form to capture user input for the creation of new buttons based on user input-->
+    <div id="user-data">
+    <h1>Enter an Animal here to add it to the list below: </h1>
+    <input type="text" id="new-topic">  <button id="new-animal">Submit</button>
+    </div>
+
+<!--Main container for all static and dynamically created page content-->
+<div class="container-fluid">
+  
+    <!--Div for all animal buttons-->
+    <div id="buttons-appear-here"><h3>Click a button to see popular Gifs for that Animal! </h3></div>
+  
+    <!--Div for all gifs with ratings pulled from the Giphy API-->
+    <div id="gifs-appear-here"></div>
+
+</div>
+
+  <!--jQuery CDN link-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    
+    // The topics array with static content and the topicButton variable declared to store dynamically created buttons
+    var topics = ["cat", "dog", "parrot", "pig", "bear", "badger", "honeybadger", "chicken", "turtle", "owl", "arctic fox", "kangaroo", "duck", "deer", "squirrel", "bobcat", "dolphin"];
+    var topicButton = "";
+
+     // For loop to create buttons for the static items in the topics array
+     for (var i = 0; i<topics.length; i++) {
+        topicButton = $("<button type='button' class='btn btn-info'>" + topics[i] + "</button>").attr("data-animal", topics[i]);
+        $("#buttons-appear-here").append(topicButton); 
+     }
+
+    // Declare empty variables to hold user generated content in the click listeners below
+    var newTopic = "";
+    var newButton = "";
+
+    // Submit button click listener to capture user input when the Submit button is clicked, push the user input into the topics array, and append a new button containing the user input to the buttons div 
+    $("#user-data button").on("click", function() {
+        newTopic = $("#new-topic").val();
+        topics.push(newTopic);
+        newButton = $("<button type='button' class='btn btn-info'>" + newTopic + "</button>").attr("data-animal", newTopic);
+        $("#buttons-appear-here").append(newButton);
+
+      // Nested click listener to add click event handling functionality to buttons created dynamically based on the user input
+      $("#buttons-appear-here button").on("click", function() {
+      var animal = $(this).attr("data-animal");
+
+      // Declare a variable to hold the query URL for the Giphy API.  The query URL sets the animal name as a search parameter per the "animal" variable and also sets the limit of gifs to be returned to ten.
+      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        animal + "&api_key=QZyCG79J0B0qu14GaORbvv7dOqHOex3Y&limit=10";
+
+      // An AJAX request using the query URL
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+        // This function will run after the AJAX response has been received and will store the data from this response in the "results" variable
+        .then(function(response) {
+          var results = response.data;
+
+          // A for loop to create divs that contain the images, ratings, and URLs for still and animated gifs from the results data and append them to the gifs div
+          for (var j = 0; j < results.length; j++) {
+            var animalDiv = $("<div class='animal-div'>");
+            var p = $("<h5>").text("Rating: " + results[j].rating);
+            var animalImage = $("<img>");
+
+            animalImage.attr("src", results[j].images.fixed_height_still.url).attr("data-still", results[j].images.fixed_height_still.url).attr("data-animate", results[j].images.fixed_height.url).attr("data-state", "still").attr("class", "gif").attr("value", j);
+
+            animalDiv.append(animalImage);
+            animalDiv.append(p);
+            $("#gifs-appear-here").append(animalDiv);
+          }
+
+            // A nested click event to switch the displayed gif between the still and animated states each time it is clicked
+            $(".gif").on("click", function() {
+                var state = $(this).attr("data-state");
+                
+                if (state === "still") {
+                    $(this).attr("src", $(this).attr("data-animate"));
+                    $(this).attr("data-state", "animate");
+                } else {
+                    $(this).attr("src", $(this).attr("data-still"));
+                    $(this).attr("data-state", "still");
+                }
+            });
+        });
+      });
+    });
+
+    // A second click listener outside of the Submit button click listener to add the required click event handling functionality and AJAX data to all the buttons in the buttons div (and their dynamically generated content) in the event that a static button is clicked first.  This click listener repeats the same steps as the nested click listener above outside of the Submit button click listener.
+    $("#buttons-appear-here button").on("click", function() {
+      var animal = $(this).attr("data-animal");
+      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        animal + "&api_key=QZyCG79J0B0qu14GaORbvv7dOqHOex3Y&limit=10";
+
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+        .then(function(response) {
+          var results = response.data;
+
+          for (var j = 0; j < results.length; j++) {
+            var animalDiv = $("<div class='animal-div'>");
+            var p = $("<h5>").text("Rating: " + results[j].rating);
+            var animalImage = $("<img>");
+
+            animalImage.attr("src", results[j].images.fixed_height_still.url).attr("data-still", results[j].images.fixed_height_still.url).attr("data-animate", results[j].images.fixed_height.url).attr("data-state", "still").attr("class", "gif").attr("value", j);
+
+            animalDiv.append(animalImage);
+            animalDiv.append(p);
+            $("#gifs-appear-here").append(animalDiv);
+          }
+
+            $(".gif").on("click", function() {
+                var state = $(this).attr("data-state");
+
+                if (state === "still") {
+                    $(this).attr("src", $(this).attr("data-animate"));
+                    $(this).attr("data-state", "animate");
+                } else {
+                    $(this).attr("src", $(this).attr("data-still"));
+                    $(this).attr("data-state", "still");
+                }
+            });
+        });
+    });
+
+
+  </script>
+
+  <style>
+
+    button {
+        margin: 5px 5px 5px 0px;
+    }
+
+    #user-data {
+        padding: 10px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        border-style: groove;
+        border-width: 0px 0px 3px 0px;
+        border-color: antiquewhite;
+    }
+
+    h1,
+    h3,
+    h5 {
+        text-shadow: 0 0 5px magenta;
+        color:ivory;
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+        margin-top: 5px;
+    }
+
+    #buttons-appear-here {
+        padding: 10px;
+    }
+
+    .animal-div {
+        display: inline-block;
+        margin: 5px;
+        padding: 5px;
+        border: 1px groove antiquewhite;
+        text-align: center;
+    }
+
+  </style>
+
+</body>
+
+</html>
