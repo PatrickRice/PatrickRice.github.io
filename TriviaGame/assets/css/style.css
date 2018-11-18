@@ -1,0 +1,42 @@
+#container {
+    background-color: bisque;
+    color: black;
+    width: 70%;
+    overflow: auto;
+    height: auto;
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    float: left;
+    margin-left: 15%;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+}
+
+h1 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: blue;
+    text-shadow: 0 0 3px #FF0000;
+    font-size: 60px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    
+}
+
+#timer {
+    font-family: monospace;
+    font-size: 40px;
+    font-weight: bold;
+    padding-bottom: 30px;
+}
+
+h2,
+p,
+.total {
+    font-size: 30px;
+}
+
+.question {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}

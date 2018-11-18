@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>80's Trivia Game!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- CSS style sheets -->
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body background = "assets/images/background.jpg">
+
+<!--Main Container-->
+<div id = "container">
+    <h1>Awesome 80's Trivia!</h1><br>
+
+    <!--Empty divs that the scores will be appended to when either the user submits the answers or time expires-->
+    <div class="total" id="total-correct"></div><br>
+    <div class="total" id="total-incorrect"></div><br>
+    <div class="total" id="total-unanswered"></div>
+
+<!--Container to allow for the "start" button only to be displayed initially and then hidden once it is clicked-->
+<div id = "question-container">
+    <button id="start" type="button" class="btn btn-primary btn-lg">Start</button>
+
+    <!--Div containing the questions, timer, and the "submit" button that is hidden initially until the user clicks the "start" button)-->
+    <div id = "questions">
+
+        <!--Timer-->
+        <div id ="timer"><h3>Time Remaining: 30</h3></div>
+
+        <!--Question 1-->
+        <div class = "question" id = "question-one">
+            <p>In 1989, who had her first of many Number 1 hits with the song "Straight Up"?</p><br>
+                <label class="radio-inline">
+                <input type="radio" name="optradio1" value="r1">Paula Abdul
+                </label>
+                <label class="radio-inline">
+                <input type="radio" name="optradio1" value="r2">Madonna
+                </label>
+                <label class="radio-inline">
+                <input type="radio" name="optradio1" value="r3">Mariah Carey
+                </label>
+        </div><br>
+
+        <!--Question 2-->
+        <div class = "question" id = "question-two">
+            <p>Which volacno in Washington state erupted in 1980?</p><br>
+                <label class="radio-inline">
+                <input type="radio" name="optradio2" value="r1">Mt. Ranier
+                </label>
+                <label class="radio-inline">
+                <input type="radio" name="optradio2" value="r2">Mt. Hood
+                </label>
+                <label class="radio-inline">
+                <input type="radio" name="optradio2" value="r3">Mt. Saint Helens
+                </label>
+        </div><br>
+
+        <!--Question 3-->
+        <div class = "question" id = "question-three">
+            <p>Who released an album called "Thriller" in 1982?</p><br>
+                <label class="radio-inline">
+                <input type="radio" name="optradio3" value="r1">Michael Jackson
+                </label>
+                <label class="radio-inline">
+                <input type="radio" name="optradio3" value="r2">Lionel Richie
+                </label>
+                <label class="radio-inline">
+                <input type="radio" name="optradio3" value="r3">George Clinton and the Parliament Funkadelic
+                </label>
+        </div><br>
+
+        <!--Question 4-->
+        <div class = "question" id = "question-four">
+            <p>What was Tom Cruise's call sign in the 1986 movie "Top Gun"?</p><br>
+                <label class="radio-inline">
+                <input type="radio" name="optradio4" value="r1">Goose
+                </label>
+                <label class="radio-inline">
+                <input type="radio" name="optradio4" value="r2">Maverick
+                </label>
+                <label class="radio-inline">
+                <input type="radio" name="optradio4" value="r3">Ice Man
+                </label>
+        </div><br>
+
+        <!--Question 5-->
+        <div class = "question" id = "question-five">
+            <p>Which team won the 1985 World Series?</p><br>
+                <label class="radio-inline">
+                <input type="radio" name="optradio5" value="r1">New York Yankees
+                </label>
+                <label class="radio-inline">
+                <input type="radio" name="optradio5" value="r2">Boston Red Sox
+                </label>
+                <label class="radio-inline">
+                <input type="radio" name="optradio5" value="r3">Kansas City Royals
+                </label>
+        </div><br>
+
+        <!--Submit button-->
+        <button id="submit" button type="button" class="btn btn-primary btn-lg">Submit</button>
+
+    </div>
+
+</div>   
+
+</div>
+     <!-- jQuery -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+     <!-- Script -->
+     <script src="assets/javascript/app.js"></script>
+     
+</body>
+</html>

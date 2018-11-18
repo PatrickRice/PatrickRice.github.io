@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CrystalsCollector!</title>
+
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+
+</head>
+
+<body background = "assets/images/background.png">
+ <div id="welcome">
+     <h1>CrystalsCollector!</h1>
+</div>
+
+<br>
+
+ <div id="instructions">
+    <p>You will be given a random number at the start of the game.</p><br>
+    <p>There are four crystals below.  By clicking on a crystal you will add a specific number of points to your total score.</p><br>
+    <p>You win the game by matching your total score to the random number, you lose the game if your total score goes above the random number.</p><br>
+    <p>The value of each crystal is hidden from you until you click on it.</p><br>
+    <p>Each time when the game starts, the game will change the values of each crystal.</p>
+ </div>
+
+ <br>
+
+    <div id="computer-number"></div>
+
+    <div id="scoreboard">
+        <p id="player-wins"></p>
+        <p id="player-losses"></p>
+    </div>
+
+<br>
+
+    <img class ="crystal-image" id ="mystery" src="assets/images/crystal.jpg" alt="Crystal of Mystery">
+
+    <img class ="crystal-image" id="ruby" src="assets/images/ruby.png" alt="Ruby">
+
+    <img class ="crystal-image" id="topaz"  src="assets/images/topaz.jpg" alt="Topaz">
+
+    <img class ="crystal-image" id="diamond" src="assets/images/diamond.png" alt="Diamond">
+
+    <br>
+
+    <div id="total-score-header">Your total score is:</div>
+
+    <br>
+
+    <div id="total-score"></div>
+
+   
+     <!-- jQuery link -->
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+     <!-- Script -->
+     <script type="text/javascript" src="assets/javascript/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+  
+  
+  #welcome {
+    background-color: brown;
+    color: white;
+    height: 100px;
+    width: 350px;
+    font-size: 40px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 100px;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+
+  #instructions {
+    background-color: wheat;
+    text-align: left;
+    padding-top: 30px;
+    height: 400px;
+    width: 500px;
+    color: green;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 10px;
+    padding-left: 10px;
+  }
+
+#computer-number {
+    background-color: lightgreen;
+    text-align: left;
+    color: black;
+    font-size: 40px;
+    height: 150px;
+    width: 300px;
+    text-align: left;
+    margin-left: 10px;
+    position: relative;
+    padding-left: 10px;
+    padding-top: 20px;
+}
+
+#scoreboard {
+    background-color: cyan;
+    height: 150px;
+    color: black;
+    font-size: 20px;
+    vertical-align: middle;
+    line-height: 50px;
+    width: 100px;
+    margin-left: 10px;
+    padding-top: 20px;
+    padding-left: 10px;
+    overflow-wrap: normal;
+    position: absolute;
+    display: inline-block;
+    margin-left: 350px;
+    margin-top: -170px;
+
+}
+  .crystal-image {
+    width: 100px;
+    height: 100px;
+    margin-left: 10px;
+    display: inline;
+  }
+  
+  #total-score-header {
+    background-color: teal;
+    color: white;
+    margin-left: 10px;
+    padding-left: 10px;
+    font-size: 20px;
+    height: 40px;
+    width: 350px;
+    vertical-align: middle;
+    line-height: 40px;
+  }
+
+  #total-score {
+    background-color: teal;
+    color: white;
+    margin-left: 10px;
+    padding-left: 10px;
+    font-size: 40px;
+    height: 150px;
+    width: 350px;
+    padding-top: 20px;
+    margin-bottom: 50px;
+  }
